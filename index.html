@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Visualizer</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header>
+  <div class="logo">
+  <img src="img/logo.svg" alt="Visualizer" class="logo-img">
+
+  <div class="logo-text">
+    VISUAL<span class="accent-1">I</span><span class="accent-2">Z</span><span class="accent-3">ER</span>
+  </div>
+</div>
+
+  <nav>
+    <a href="dados.html" class="nav-item" data-view="dados">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <ellipse cx="12" cy="5" rx="8" ry="3"/>
+        <path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/>
+        <path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/>
+      </svg>
+      Dados
+    </a>
+
+    <a href="entidades.html" class="nav-item" data-view="entidades">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="8" y1="6" x2="21" y2="6"/>
+        <line x1="8" y1="12" x2="21" y2="12"/>
+        <line x1="8" y1="18" x2="21" y2="18"/>
+        <line x1="3" y1="6" x2="3.01" y2="6"/>
+        <line x1="3" y1="12" x2="3.01" y2="12"/>
+        <line x1="3" y1="18" x2="3.01" y2="18"/>
+      </svg>
+      Entidades
+    </a>
+
+    <a href="tutorial.html" class="nav-item" data-view="tutorial">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/>
+    <path d="M9.5 9a2.5 2.5 0 0 1 4.86 1c0 1.5-2.36 2-2.36 3.5"/>
+    <line x1="12" y1="17" x2="12.01" y2="17"/>
+  </svg>
+  Tutorial
+</a>
+
+  </nav>
+</header>
+
+<main>
+  <!-- Dados do arquivo -->
+  <section>
+    <h2 class="panel-title">Dados do arquivo</h2>
+    <div class="hexview">
+      <div class="hex-gutter">
+        <div class="hex-gutter-icons">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="8" y1="6" x2="21" y2="6"/>
+            <line x1="8" y1="12" x2="21" y2="12"/>
+            <line x1="8" y1="18" x2="21" y2="18"/>
+            <line x1="3" y1="6" x2="3.01" y2="6"/>
+            <line x1="3" y1="12" x2="3.01" y2="12"/>
+            <line x1="3" y1="18" x2="3.01" y2="18"/>
+          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </div>
+        <div id="hex-offsets"></div>
+      </div>
+      <div class="hex-body">
+        <div class="hex-header-row" id="hex-header"></div>
+        <div id="hex-rows"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Decodificador -->
+  <section>
+    <h2 class="panel-title">Decodificador</h2>
+    <div class="decoder-panel">
+      <div class="decoder-tabs">
+        <button class="decoder-tab active" data-tab="decodificador">Decodificador</button>
+        <button class="decoder-tab" data-tab="entidades">Entidades</button>
+      </div>
+      <div class="decoder-body" id="decoder-content"></div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <div class="actions-row">
+
+  <button class="download-btn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+      <polyline points="7 10 12 15 17 10"/>
+      <line x1="12" y1="15" x2="12" y2="3"/>
+    </svg>
+    Baixar .db
+  </button>
+
+  <div class="crud-divider"></div>
+
+  <div class="crud-actions">
+    <button class="crud-btn create">CREATE</button>
+    <button class="crud-btn read">READ</button>
+    <button class="crud-btn update">UPDATE</button>
+    <button class="crud-btn delete">DELETE</button>
+  </div>
+
+</div>
+</main>
+
+<script src="js/script.js"></script>
+</body>
+</html>

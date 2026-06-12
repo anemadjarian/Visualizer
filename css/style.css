@@ -1,0 +1,337 @@
+:root {
+  --bg: #ffffff;
+  --panel-bg: #efefef;
+  --panel-bg-soft: #f4f4f4;
+  --border: #e2e2e2;
+  --text: #1f1f1f;
+  --text-muted: #8a8a8a;
+  --accent-pink: #ec3e84;
+  --logo-purple: #6b5fd8;
+  --logo-blue: #4f9ddb;
+  --logo-green: #6cc36b;
+  --logo-yellow: #f0c14b;
+  --mono: "IBM Plex Mono", "JetBrains Mono", Consolas, monospace;
+  --sans: "Inter", -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--sans);
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Header ---------- */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 28px;
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-mark {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 2px;
+  padding: 3px;
+}
+
+.logo-mark span {
+  border-radius: 2px;
+}
+.logo-mark span:nth-child(1) { background: var(--logo-purple); }
+.logo-mark span:nth-child(2) { background: var(--logo-blue); }
+.logo-mark span:nth-child(3) { background: var(--logo-green); }
+.logo-mark span:nth-child(4) { background: var(--logo-yellow); }
+
+.logo-text {
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+}
+.logo-text .accent-1 { color: var(--logo-blue); }
+.logo-text .accent-2 { color: var(--logo-green); }
+.logo-text .accent-3 { color: var(--accent-pink); }
+
+nav {
+  display: flex;
+  gap: 28px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  user-select: none;
+  border: none;
+  background: none;
+  padding: 6px 4px;
+  border-radius: 6px;
+  transition: color 0.15s ease;
+}
+.nav-item:hover { color: var(--accent-pink); }
+
+.nav-item svg { width: 18px; height: 18px; }
+
+/* ---------- Layout ---------- */
+main {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 24px;
+  padding: 28px;
+  align-items: start;
+}
+
+.panel-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 14px;
+  letter-spacing: 0.2px;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: inherit;
+    font-size: 1.0rem; /* aumenta o texto */
+}
+
+.logo-img {
+    height: 50px;
+    width: auto;
+}
+
+/* ---------- Hex viewer panel ---------- */
+.hexview {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--panel-bg-soft);
+  min-height: 340px;
+}
+
+.hex-gutter {
+  background: var(--panel-bg);
+  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-right: 1px solid var(--border);
+}
+
+.hex-gutter-icons {
+  display: flex;
+  gap: 6px;
+  color: var(--text-muted);
+  padding-bottom: 8px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.hex-gutter-icons svg { width: 14px; height: 14px; }
+
+.hex-offset {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 22px;
+}
+
+.hex-body {
+  padding: 10px 14px;
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 22px;
+  overflow: auto;
+}
+
+.hex-header-row,
+.hex-data-row {
+  white-space: pre;
+  color: var(--text);
+  letter-spacing: 1px;
+}
+
+.hex-header-row { color: var(--text-muted); }
+
+.hex-byte {
+  display: inline-block;
+  width: 22px;
+  text-align: center;
+  border-radius: 3px;
+  transition: background 0.1s ease;
+  cursor: default;
+}
+.hex-byte:hover { background: #dde6f5; }
+
+/* ---------- Decoder panel ---------- */
+.decoder-panel {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--panel-bg-soft);
+  overflow: hidden;
+  min-height: 340px;
+}
+
+.decoder-tabs {
+  display: flex;
+  background: var(--panel-bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.decoder-tab {
+  flex: 1;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  border: none;
+  background: none;
+  border-right: 1px solid var(--border);
+  transition: color 0.15s ease, background 0.15s ease;
+}
+.decoder-tab:last-child { border-right: none; }
+.decoder-tab.active {
+  color: var(--text);
+  background: var(--panel-bg-soft);
+}
+
+.decoder-body {
+  padding: 14px;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 1px;
+  line-height: 22px;
+}
+
+/* ---------- Footer / actions ---------- */
+.actions-row {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent-pink);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter 0.15s ease;
+}
+.download-btn:hover { filter: brightness(1.05); }
+.download-btn svg { width: 16px; height: 16px; }
+
+.cursor-tag {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  color: var(--accent-pink);
+}
+
+.cursor-tag svg { width: 22px; height: 22px; transform: rotate(-10deg); }
+
+.cursor-label {
+  background: #f3d34a;
+  color: #1f1f1f;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin-top: 14px;
+}
+
+hr.divider {
+  grid-column: 1 / -1;
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 18px 0 0;
+}
+
+/* CRUD Actions */
+
+.crud-divider {
+  width: 1px;
+  height: 36px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--border),
+    transparent
+  );
+  margin: 0 20px;
+}
+
+.crud-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.crud-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: white;
+}
+
+.crud-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* cores da identidade visual */
+
+.create {
+  background:#6b5fd8;
+}
+
+.read {
+  background:#4f9ddb;
+}
+
+.update {
+  background:#ed7b09;
+}
+
+.delete {
+  background:#6cc36b;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 860px) {
+  main { grid-template-columns: 1fr; }
+  nav { gap: 16px; }
+}
