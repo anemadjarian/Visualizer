@@ -1,4 +1,4 @@
-//const ByteStream = require("./ByteStream");
+const ByteStream = require("./ByteStream");
 
 const VetorBytesEntidade = (() => {
     const TAMANHO_CONTADOR = 4;
