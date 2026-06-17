@@ -201,3 +201,28 @@ return {
         fromByteArray
     };
 })();
+
+/* <<<<<<<<<<<<<--------TESTE PARA TO E FROM byete array ----------->>>>>>>>>>>>>>>>>>>>
+const atributosProduto = [
+    { nome: "preco", tipo: "Float" },
+    { nome: "nome", tipo: "String" },
+    { caracteristica: "caracteristica", tipo: "String"}
+];
+const valoresProduto = [89.90, "Teclado", "Preto"];
+
+console.log("=== INICIANDO TESTE DO CONVERSOR DINÂMICO ===");
+
+// 2. Chamar a função para converter para bytes (retorna um array comum)
+const bytesGerados = ConversorDinamico.toByteArray(atributosProduto, valoresProduto);
+console.log("Bytes criados no outro arquivo:", bytesGerados);
+
+
+// 3. CORREÇÃO AQUI: Convertemos o array comum em um Uint8Array antes de ler!
+const bufferDeBytes = new Uint8Array(bytesGerados); 
+
+// Passamos o buffer correto para a função de leitura
+const dadosTraduzidos = ConversorDinamico.fromByteArray(atributosProduto, bufferDeBytes);
+console.log("Dados lidos de volta:", dadosTraduzidos); 
+
+
+console.log("=== FIM DO TESTE ==="); */
