@@ -382,6 +382,7 @@ function coletarDadosCrud() {
   if (!entidade) return;
 
   const valoresOrdenados = obterDadosFormularioCrud();
+
   const registro = {
     acao: estadoCrud.acaoAtual,
     entidadeId: entidade.id,
@@ -391,9 +392,30 @@ function coletarDadosCrud() {
   };
 
   estadoCrud.registrosFormulario.push(registro);
-  setMensagemFormulario("Dados coletados em memoria.", "success");
-  mostrarToast("Dados do formulario coletados.");
+
   console.log("Registro CRUD coletado:", registro);
+
+  const idCriado = CreateArquivo.create(
+    entidade.id,
+    registro.valores
+  );
+
+  console.log("ID criado:", idCriado);
+
+  console.log(
+      localStorage.getItem(entidade.id)
+  );
+
+  console.log(
+    localStorage.getItem(entidade.id)
+  );
+
+  setMensagemFormulario(
+    "Dados coletados e salvos.",
+    "success"
+  );
+
+  mostrarToast(`Registro ${idCriado} criado.`);
 }
 
 window.VisualizerCrud = {

@@ -1,4 +1,4 @@
-const ByteStreamAPI = typeof ByteStream !== "undefined" ? ByteStream : require("./ByteStream");
+const ByteStreamAPI = ByteStream;
 
 const VetorBytesEntidade = (() => {
     const TAMANHO_CONTADOR = 4;
