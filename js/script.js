@@ -74,8 +74,7 @@ function renderizarRegistros() {
     decoderContent.innerHTML = "";
 
     if (!entidade) {
-        decoderContent.innerHTML =
-            "<p>Nenhuma entidade selecionada.</p>";
+        decoderContent.innerHTML = "<p>Nenhuma entidade selecionada.</p>";
         return;
     }
 
@@ -84,22 +83,82 @@ function renderizarRegistros() {
     console.log("REGISTROS:", registros);
 
     if (!registros || registros.length === 0) {
-        decoderContent.innerHTML =
-            "<p>Nenhum registro encontrado.</p>";
+        decoderContent.innerHTML = "<p>Nenhum registro encontrado.</p>";
         return;
     }
 
-    registros.forEach(registro => {
+    const registrosAtivos = registros.filter(r => r.ativo);
+
+    if (registrosAtivos.length === 0) {
+        decoderContent.innerHTML = "<p>Nenhum registro ativo encontrado.</p>";
+        return;
+    }
+
+    registrosAtivos.forEach(registro => {
 
         const div = document.createElement("div");
 
         div.innerHTML = `
-            <h3>ID ${registro.id}</h3>
-            <pre>${JSON.stringify(registro, null, 2)}</pre>
+            <div class="registro-card">
+
+                <div class="registro-valores">
+                    ${Object.entries(registro.valores)
+                        .map(([k, v]) => `<div><b>${k}</b>: ${v}</div>`)
+                        .join("")}
+                </div>
+
+                <div class="registro-info">
+                    <div><b>Criado:</b> ${new Date(registro.criadoEm).toLocaleString()}</div>
+                    <div><b>Atualizado:</b> ${new Date(registro.atualizadoEm).toLocaleString()}</div>
+                </div>
+
+            </div>
         `;
 
         decoderContent.appendChild(div);
     });
+
+    const style = document.createElement("style");
+
+      style.innerHTML = `
+      .registro-card {
+          border: 1px solid #ffffff;
+          padding: 10px;
+          margin-bottom: 10px;
+          border-radius: 8px;
+          background: #ffffff;
+          color: black;
+      }
+      `;
+
+      document.head.appendChild(style);
+      }
+
+function renderRegistro(registro) {
+  return `
+    <div class="registro-card">
+      <div class="registro-header">
+        <strong>ID ${registro.id}</strong>
+        <span class="status ${registro.ativo ? "ativo" : "inativo"}">
+          ${registro.ativo ? "Ativo" : "Inativo"}
+        </span>
+      </div>
+
+      <div class="registro-body">
+        <div><b>Criado em:</b> ${new Date(registro.criadoEm).toLocaleString()}</div>
+        <div><b>Atualizado em:</b> ${new Date(registro.atualizadoEm).toLocaleString()}</div>
+      </div>
+
+      <div class="registro-valores">
+        <b>Valores:</b>
+        <ul>
+          ${Object.entries(registro.valores)
+            .map(([chave, valor]) => `<li><b>${chave}</b>: ${valor}</li>`)
+            .join("")}
+        </ul>
+      </div>
+    </div>
+  `;
 }
 
 function criarOffsetHex(valor) {
